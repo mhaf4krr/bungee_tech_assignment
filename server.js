@@ -77,13 +77,15 @@ async function generateMinPrices(){
     let lowestPrices = []
 
     entries.forEach((entry)=>{
-        if(data[entry].price_2 != null){
-            lowestPrices.push({
-                SKU:entry,
-                FIRST_MINIMUM_PRICE:data[entry].price_1,
-                SECOND_MINIMUM_PRICE:data[entry].price_2
-            })
+        if(data[entry].price_2 == null){
+            data[entry].price_2 = data[entry].price_1
         }
+
+        lowestPrices.push({
+            SKU:entry,
+            FIRST_MINIMUM_PRICE:data[entry].price_1,
+            SECOND_MINIMUM_PRICE:data[entry].price_2
+        })
     })
     
    
